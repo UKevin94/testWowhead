@@ -34,6 +34,7 @@ public class LardonTask {
 	
 	@Before
 	public void setUp() {
+		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.get("https://fr.wowhead.com/");
 		searchValue = "Lardeur";
