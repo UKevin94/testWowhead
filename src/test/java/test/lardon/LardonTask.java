@@ -36,19 +36,14 @@ public class LardonTask {
 	@Before
 	public void setUp() {
 		String navigateur = System.getProperty("nav");
-		switch(navigateur) {
-		case "Firefox":
-			System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
-			driver = new FirefoxDriver();
-			break;
-		case "Chrome":
+		if(navigateur.equals("Chrome"))
+		{
 			System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
 			driver = new ChromeDriver();
-			break;
-		default :
+		}
+		else {
 			System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
 			driver = new FirefoxDriver();
-			break;
 		}
 //		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
 //		driver = new FirefoxDriver();
