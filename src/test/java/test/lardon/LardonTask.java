@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,8 +35,23 @@ public class LardonTask {
 	
 	@Before
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
-		driver = new FirefoxDriver();
+		String navigateur = System.getProperty("nav");
+		switch(navigateur) {
+		case "Firefox":
+			System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
+			driver = new FirefoxDriver();
+			break;
+		case "Chrome":
+			System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+			driver = new ChromeDriver();
+			break;
+		default :
+			System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
+			driver = new FirefoxDriver();
+			break;
+		}
+//		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
+//		driver = new FirefoxDriver();
 		driver.get("https://fr.wowhead.com/");
 		searchValue = "Lardeur";
 		itemNb = 5;
