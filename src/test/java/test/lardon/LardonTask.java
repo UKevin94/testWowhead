@@ -16,6 +16,7 @@ import test.action.Click;
 import test.action.Enter;
 import test.action.Go;
 import test.action.Scroll;
+import test.action.Stop;
 import test.action.Verify;
 import test.action.Wait;
 
@@ -76,33 +77,40 @@ public class LardonTask {
 	@Test
 	public void lardonTask() throws InterruptedException {
 		//Thread.sleep(1500);
+		//Wait until cookie button + pageload
 		Wait.untilVisible(driver, wait, HomePage.searchInput);
 		Wait.untilClickable(driver, wait, HomePage.cookieButton);
 		Wait.untilVisible(driver, wait, HomePage.cookieButton);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("return window.stop");
+		Stop.pageLoad(driver);
 		Verify.cookies(driver, HomePage.cookieButton);
+		//Search
 		Enter.andInputAfterClear(driver, HomePage.searchInput, "Lardeur");
 		Click.on(driver, HomePage.searchButton);
+		//Post search > click on boss
 		Wait.untilVisible(driver, wait, SearchPage.pnjButton);
 		Scroll.into(driver, SearchPage.pnjButton);
 		Click.on(driver, SearchPage.pnjButton);
 		Scroll.into(driver, SearchPage.bossLink);
 		Click.on(driver, SearchPage.bossLink);
+		//Assert on number of items + click on first item
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
 		Scroll.into(driver, NpcPage.nbListItems);
 		Verify.number(driver, NpcPage.nbListItems, itemNb);
 		Scroll.into(driver, NpcPage.firstItem);
 		Click.on(driver, NpcPage.firstItem);
 		Wait.untilVisible(driver, wait, ItemPage.itemName);
+		Stop.pageLoad(driver);
+		//Assert item stats
 		Verify.name(driver, ItemPage.itemName, itemName1);
 		Verify.stats(driver, ItemPage.intelStats, firstStat, firstValue);
 		Verify.stats(driver, ItemPage.enduStats, secondStat, secondValue);
 		Go.back(driver);
+		//Goto second item
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
 		Scroll.into(driver, NpcPage.secondItem);
 		Click.on(driver, NpcPage.secondItem);
 		Wait.untilVisible(driver, wait, ItemPage.itemName);
+		//Assert 2nd item
 		Verify.name(driver, ItemPage.itemName, itemName2);
 		Verify.stats(driver, ItemPage.agintelStats, thirdStat, thirdValue);
 		Verify.stats(driver, ItemPage.enduStats, fourthStat, fourthValue);
