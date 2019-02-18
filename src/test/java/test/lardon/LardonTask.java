@@ -79,6 +79,8 @@ public class LardonTask {
 		Wait.untilVisible(driver, wait, HomePage.searchInput);
 		Wait.untilClickable(driver, wait, HomePage.cookieButton);
 		Wait.untilVisible(driver, wait, HomePage.cookieButton);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("return window.stop");
 		Verify.cookies(driver, HomePage.cookieButton);
 		Enter.andInputAfterClear(driver, HomePage.searchInput, "Lardeur");
 		Click.on(driver, HomePage.searchButton);
