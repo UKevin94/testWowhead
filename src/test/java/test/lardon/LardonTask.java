@@ -1,8 +1,11 @@
 package test.lardon;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,7 +35,7 @@ public class LardonTask {
 	int thirdValue;
 	String fourthStat;
 	int fourthValue;
-	
+
 	@Before
 	public void setUp() {
 		String navigateur = System.getProperty("nav");
@@ -45,8 +48,8 @@ public class LardonTask {
 			System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
-//		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
-//		driver = new FirefoxDriver();
+		//		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
+		//		driver = new FirefoxDriver();
 		driver.get("https://fr.wowhead.com/");
 		searchValue = "Lardeur";
 		itemNb = 5;
@@ -61,8 +64,11 @@ public class LardonTask {
 		fourthStat = "Endurance";
 		fourthValue = 10;
 		wait = new WebDriverWait(driver, 15);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Dimension d = new Dimension(1280,720);
+		driver.manage().window().setSize(d);	
 	}
-	
+
 	@Test
 	public void lardonTask() throws InterruptedException {
 		Thread.sleep(1000);
@@ -93,9 +99,8 @@ public class LardonTask {
 		Verify.name(driver, ItemPage.itemName, itemName2);
 		Verify.stats(driver, ItemPage.agintelStats, thirdStat, thirdValue);
 		Verify.stats(driver, ItemPage.enduStats, fourthStat, fourthValue);
-		
 	}
-	
+
 	@After
 	public void tearDown() {
 		driver.quit();
