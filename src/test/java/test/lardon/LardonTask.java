@@ -88,12 +88,14 @@ public class LardonTask {
 		Click.on(driver, HomePage.searchButton);
 		//Post search > click on boss
 		Wait.untilVisible(driver, wait, SearchPage.pnjButton);
+		Stop.pageLoad(driver);
 		Scroll.into(driver, SearchPage.pnjButton);
 		Click.on(driver, SearchPage.pnjButton);
 		Scroll.into(driver, SearchPage.bossLink);
 		Click.on(driver, SearchPage.bossLink);
 		//Assert on number of items + click on first item
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
+		Stop.pageLoad(driver);
 		Scroll.into(driver, NpcPage.nbListItems);
 		Verify.number(driver, NpcPage.nbListItems, itemNb);
 		Scroll.into(driver, NpcPage.firstItem);
@@ -107,9 +109,11 @@ public class LardonTask {
 		Go.back(driver);
 		//Goto second item
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
+		Stop.pageLoad(driver);
 		Scroll.into(driver, NpcPage.secondItem);
 		Click.on(driver, NpcPage.secondItem);
 		Wait.untilVisible(driver, wait, ItemPage.itemName);
+		Stop.pageLoad(driver);
 		//Assert 2nd item
 		Verify.name(driver, ItemPage.itemName, itemName2);
 		Verify.stats(driver, ItemPage.agintelStats, thirdStat, thirdValue);
