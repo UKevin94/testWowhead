@@ -50,7 +50,9 @@ public class LardonTask {
 		}
 		//		System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
 		//		driver = new FirefoxDriver();
-		Dimension d = new Dimension(1280,960);
+		String width = System.getProperty("winWidth");
+		String height = System.getProperty("winHeight");
+		Dimension d = new Dimension(Integer.parseInt(width),Integer.parseInt(height));
 		driver.manage().window().setSize(d);	
 		driver.get("https://fr.wowhead.com/");
 		searchValue = "Lardeur";
