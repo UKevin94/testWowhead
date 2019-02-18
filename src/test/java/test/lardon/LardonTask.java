@@ -86,32 +86,34 @@ public class LardonTask {
 		//Search
 		Enter.andInputAfterClear(driver, HomePage.searchInput, "Lardeur");
 		Click.on(driver, HomePage.searchButton);
-		//Post search > click on boss
+		//Search Page + click on boss
 		Wait.untilVisible(driver, wait, SearchPage.pnjButton);
 		Stop.pageLoad(driver);
 		Scroll.into(driver, SearchPage.pnjButton);
 		Click.on(driver, SearchPage.pnjButton);
 		Scroll.into(driver, SearchPage.bossLink);
 		Click.on(driver, SearchPage.bossLink);
-		//Assert on number of items + click on first item
+		//NPC Page
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
 		Stop.pageLoad(driver);
 		Scroll.into(driver, NpcPage.nbListItems);
 		Verify.number(driver, NpcPage.nbListItems, itemNb);
 		Scroll.into(driver, NpcPage.firstItem);
 		Click.on(driver, NpcPage.firstItem);
+		//ItemPage 1
 		Wait.untilVisible(driver, wait, ItemPage.itemName);
 		Stop.pageLoad(driver);
 		//Assert item stats
 		Verify.name(driver, ItemPage.itemName, itemName1);
 		Verify.stats(driver, ItemPage.intelStats, firstStat, firstValue);
 		Verify.stats(driver, ItemPage.enduStats, secondStat, secondValue);
+		//Back to NPC
 		Go.back(driver);
-		//Goto second item
 		Wait.untilVisible(driver, wait, NpcPage.npcName);
 		Stop.pageLoad(driver);
 		Scroll.into(driver, NpcPage.secondItem);
 		Click.on(driver, NpcPage.secondItem);
+		//ItemPage 2
 		Wait.untilVisible(driver, wait, ItemPage.itemName);
 		Stop.pageLoad(driver);
 		//Assert 2nd item
