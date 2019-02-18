@@ -73,9 +73,10 @@ public class LardonTask {
 
 	@Test
 	public void lardonTask() throws InterruptedException {
-		Thread.sleep(1000);
+		//Thread.sleep(1500);
 		Wait.untilVisible(driver, wait, HomePage.searchInput);
 		Wait.untilClickable(driver, wait, HomePage.cookieButton);
+		Wait.untilVisible(driver, wait, HomePage.cookieButton);
 		Verify.cookies(driver, HomePage.cookieButton);
 		Enter.andInputAfterClear(driver, HomePage.searchInput, "Lardeur");
 		Click.on(driver, HomePage.searchButton);
