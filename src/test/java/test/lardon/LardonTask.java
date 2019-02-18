@@ -65,7 +65,7 @@ public class LardonTask {
 		fourthValue = 10;
 		wait = new WebDriverWait(driver, 15);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Dimension d = new Dimension(1280,720);
+		Dimension d = new Dimension(1280,960);
 		driver.manage().window().setSize(d);	
 	}
 
